@@ -157,6 +157,22 @@
             <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc-14.jar</systemPath>
         </dependency>
         -->
+        
+        <!-- Junit -->
+        <dependency>
+		  <groupId>junit</groupId>
+		  <artifactId>junit</artifactId>
+		  <version>4.7</version>
+		  <scope>test</scope>
+		</dependency> 
+
+		<dependency> 
+			<groupId>org.springframework</groupId> 
+			<artifactId>spring-test</artifactId> 
+			<version>4.1.9.RELEASE</version> 
+			<scope>test</scope> 
+		</dependency>
+
 	</dependencies>
 
 	<build>
