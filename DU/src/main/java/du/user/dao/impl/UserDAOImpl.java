@@ -10,7 +10,13 @@ import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
 public class UserDAOImpl extends EgovAbstractMapper implements UserDAO {
 
 	@Override
+	public String selectPwd(String userId) {
+		return selectOne("userDAO.selectPwd", userId);
+	}
+	
+	@Override
 	public UserVO selectUserInfo(String userId) {
 		return selectOne("userDAO.selectUserInfo", userId);
 	}
+
 }
