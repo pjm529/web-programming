@@ -66,4 +66,12 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(UserVO user) {
 		userDAO.updateUser(user);
 	}
+
+	@Override
+	public void deleteUser(HttpSession session) {
+		
+		UserVO user = (UserVO) session.getAttribute("USER");
+		
+		userDAO.deleteUser(user.getUserId());
+	}
 }

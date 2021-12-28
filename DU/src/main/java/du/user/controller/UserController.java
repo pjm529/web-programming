@@ -1,5 +1,7 @@
 package du.user.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,4 +34,12 @@ public class UserController {
 		userService.updateUser(user);
 		return "redirect:/logout.do";
 	}
+	
+	@RequestMapping("/userDelete.do")
+	public String userDelete(HttpSession session) {
+		userService.deleteUser(session);
+		
+		return "redirect:/loginPage.do";
+	}
+	
 }

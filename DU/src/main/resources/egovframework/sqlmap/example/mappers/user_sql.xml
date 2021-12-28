@@ -57,6 +57,13 @@
 			WHERE 
 				user_id = #{userId}
 		]]>
-			
 	</update>
+	
+	<delete id="deleteUser" parameterType="string">
+		<![CDATA[
+			DELETE FROM tb_user
+			WHERE
+				user_id = #{userId}
+		]]>
+	</delete>
 </mapper>

@@ -61,7 +61,7 @@
 		</table>
 		<div>
 			<button type="button" id="okBtn">수정</button>
-			<button type="button">회원탈퇴</button>
+			<button type="button" id="delBtn">회원탈퇴</button>
 			<button type="button" onclick="window.history.go(-1)">이전</button>
 		</div>
 	</form>
@@ -69,6 +69,7 @@
 <script>
 	window.onload = function() {
 		var okBtn = document.getElementById('okBtn');
+		var delBtn = document.getElementById('delBtn');
 		
 		okBtn.onclick = function() {
 			var pwd = document.getElementById('pwdInput').value;
@@ -79,6 +80,10 @@
 			} else {
 				alert("비밀번호 입력을 확인해주세요.");
 			}
+		}
+		
+		delBtn.onclick = function() {
+			window.location.href='userDelete.do';
 		}
 	}
 </script>	
