@@ -5,12 +5,16 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="css/main.css">
 <script type="text/javascript" src="js/bootstrap/bootstrap.bundle.js"></script>
 <meta charset="UTF-8">
 <title>부서 정보</title>
 </head>
 <body>
 
+	<header>
+		<jsp:include page="/WEB-INF/jsp/layout/header.jsp"></jsp:include>
+	</header>
 	<table class="table table-hover">
 		<thead>
 			<tr>
