@@ -36,7 +36,7 @@
 				</table>	
 			</div>
 			<div>
-				<button type="button" onclick="window.location.href='signUp.do'">회원가입</button>
+				<button type="button" onclick="window.location.href='signUpPage.do'">회원가입</button>
 				<button type="submit">submit</button>
 				<button type="reset">reset</button>
 			</div>
