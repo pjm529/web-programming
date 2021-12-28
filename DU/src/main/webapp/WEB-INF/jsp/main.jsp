@@ -7,15 +7,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script type="text/javascript" src="js/bootstrap/bootstrap.bundle.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Main Page</title>
 </head>
 <body>
-	<h1><c:out value="${USER.name }"></c:out>님 반갑습니다.</h1>
-	<h1>부서는 <c:out value="${USER.deptNm }"></c:out>입니다.</h1>
+	<header>
+		<div class="logoDiv">
+			<img alt="대구대학교 로고" src="images/symbol_1.png">
+		</div>
+		
+		<ul class="infoUl">
+			<li><a href="deptPage.do">부서 정보</a></li>
+		</ul>
+		
+		<div class="userInfoDiv">
+			<c:out value="${USER.name }"></c:out>님 반갑습니다.
+			<button type="button" class="btn btn-primary btn-sm" style="right" onclick="window.location.href='logout.do'">로그아웃</button>
+			<button type="button" class="btn btn-outline-primary btn-sm" style="right" onclick="window.location.href='userInfoConfirmPage.do'">내정보</button>
+		</div>
+	</header>
 	
-	<button type="button" style="right" onclick="window.location.href='logout.do'">로그아웃</button>
-	<button type="button" style="right" onclick="window.location.href='userInfoConfirmPage.do'">내정보</button>
-	<button type="button" onclick="window.location.href='deptPage.do'">부서정보</button>
 </body>
 </html>
