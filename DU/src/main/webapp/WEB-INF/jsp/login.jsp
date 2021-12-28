@@ -4,7 +4,7 @@
 <html>
 <head>
 	<style>
-		filedset {
+		fieldset {
 			width: 750px;
 		}
 		
