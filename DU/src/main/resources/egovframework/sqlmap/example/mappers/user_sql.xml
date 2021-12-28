@@ -13,7 +13,7 @@
 		<result column="email"		property="email" />
 	</resultMap>
 	
-	<select id="selectUserInfo" parameterType="string" resultType="UserVO">
+	<select id="selectUserInfo" parameterType="string" resultMap="userMap">
 		<![CDATA[
 			SELECT
 				*
@@ -24,7 +24,7 @@
 		]]>
 	</select>
 	
-	<select id="selectPWd" parameterType="string" resultType="string">
+	<select id="selectPwd" parameterType="string" resultType="string">
 		<![CDATA[
 			SELECT
 				pwd
