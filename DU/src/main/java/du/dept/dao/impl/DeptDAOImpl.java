@@ -21,4 +21,9 @@ public class DeptDAOImpl extends EgovAbstractMapper implements DeptDAO {
 		insert("DeptDAO.insertDept", dept);
 	}
 
+	@Override
+	public void deleteDept(String deptCd) {
+		delete("DeptDAO.deleteDept", deptCd);
+	}
+
 }

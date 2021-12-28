@@ -25,4 +25,9 @@ public class DeptServiceImpl implements DeptService {
 		deptDAO.insertDept(dept);
 	}
 
+	@Override
+	public void deleteDept(String deptCd) {
+		deptDAO.deleteDept(deptCd);
+	}
+
 }

@@ -23,6 +23,13 @@
 			VALUES
 				(#{deptCd}, #{deptNm})
 		]]>
-		
 	</insert>
+	
+	<delete id="deleteDept" parameterType="string">
+		<![CDATA[
+			DELETE FROM tb_dept_cd
+			WHERE
+				dept_cd = #{deptCd}		
+		]]>
+	</delete>
 </mapper>

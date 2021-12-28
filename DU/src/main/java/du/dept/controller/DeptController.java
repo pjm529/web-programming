@@ -35,4 +35,10 @@ public class DeptController {
 		deptService.insertDept(dept);
 		return "redirect:/deptPage.do";
 	}
+	
+	@RequestMapping("/deptDelete.do")
+	public String deptDelete(String deptCd) {
+		deptService.deleteDept(deptCd);
+		return "redirect:/deptPage.do";
+	}
 }
