@@ -1,11 +1,14 @@
 package du.user.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import du.user.domain.UserVO;
 
 public interface UserService {
 	
-	public boolean selectPwd(String userId, String userPwd) throws Exception;
+	public boolean selectPwd(String userId, String userPwd);
 	
 	public UserVO selectUserInfo(String userId);
-
+	
+	public Boolean loginProcess(HttpServletRequest request, UserVO user);
 }
