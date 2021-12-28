@@ -15,6 +15,6 @@
 	<h1>부서는 <c:out value="${USER.deptNm }"></c:out>입니다.</h1>
 	
 	<button type="button" style="right" onclick="window.location.href='logout.do'">로그아웃</button>
-	<button type="button" style="right" onclick="window.location.href='userInfo.do'">내정보</button>
+	<button type="button" style="right" onclick="window.location.href='userInfoConfirmPage.do'">내정보</button>
 </body>
 </html>
