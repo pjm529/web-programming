@@ -34,4 +34,13 @@
 				user_id = #{userId}
 		]]>
 	</select>
+	
+	<insert id="insertUser" parameterType="UserVO">
+		<![CDATA[
+			INSERT INTO tb_user
+				(user_id, pwd, name, dept_cd, job, phone, email)
+			VALUES
+				(#{userId}, #{pwd}, #{name}, #{deptCd}, #{job}, #{phone}, #{email})
+		]]>
+	</insert>
 </mapper>

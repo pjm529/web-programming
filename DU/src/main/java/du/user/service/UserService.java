@@ -11,4 +11,6 @@ public interface UserService {
 	public UserVO selectUserInfo(String userId);
 	
 	public Boolean loginProcess(HttpServletRequest request, UserVO user);
+	
+	public void insertUser(UserVO user);
 }

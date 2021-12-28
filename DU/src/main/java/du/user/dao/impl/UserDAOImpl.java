@@ -19,4 +19,9 @@ public class UserDAOImpl extends EgovAbstractMapper implements UserDAO {
 		return selectOne("userDAO.selectUserInfo", userId);
 	}
 
+	@Override
+	public void insertUser(UserVO user) {
+		insert("userDAO.insertUser", user);
+	}
+
 }
