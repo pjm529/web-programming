@@ -16,5 +16,6 @@
 	
 	<button type="button" style="right" onclick="window.location.href='logout.do'">로그아웃</button>
 	<button type="button" style="right" onclick="window.location.href='userInfoConfirmPage.do'">내정보</button>
+	<button type="button" onclick="window.location.href='deptPage.do'">부서정보</button>
 </body>
 </html>
