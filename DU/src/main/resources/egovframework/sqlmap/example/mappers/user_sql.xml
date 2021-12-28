@@ -16,7 +16,7 @@
 	<select id="selectUserInfo" parameterType="string" resultMap="userMap">
 		<![CDATA[
 			SELECT 
-				A.user_id, A.name, B.dept_nm 
+				A.user_id, A.name, A.dept_cd, A.job, A.phone, A.email, B.dept_nm  
 			FROM 
 				TB_USER A INNER JOIN TB_DEPT_CD B ON A.dept_cd = B.dept_cd
 			WHERE
