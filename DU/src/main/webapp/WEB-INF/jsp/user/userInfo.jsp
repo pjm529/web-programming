@@ -20,7 +20,7 @@
 		<tbody>
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" value="" /></td>
+				<td><c:out value="${USER.userId}"></c:out></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -32,7 +32,7 @@
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td><input type="text" value="" /></td>
+				<td><input type="text" value="${USER.name}" /></td>
 			</tr>
 			<tr>
 				<th>부서</th>
@@ -46,15 +46,15 @@
 			</tr>
 			<tr>
 				<th>직급</th>
-				<td><input type="text" value="" /></td>
+				<td><input type="text" value="${USER.job}" /></td>
 			</tr>
 			<tr>
 				<th>연락처</th>
-				<td><input type="text" value="" /></td>
+				<td><input type="text" value="${USER.phone}" /></td>
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input type="text" value="" /></td>
+				<td><input type="text" value="${USER.email}" /></td>
 			</tr>
 		</tbody>
 	</table>
