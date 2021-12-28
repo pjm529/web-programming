@@ -6,7 +6,7 @@ import du.user.dao.UserDAO;
 import du.user.domain.UserVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
 
-@Repository("userDAO")
+@Repository
 public class UserDAOImpl extends EgovAbstractMapper implements UserDAO {
 
 	@Override

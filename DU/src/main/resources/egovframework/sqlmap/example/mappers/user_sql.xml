@@ -15,12 +15,12 @@
 	
 	<select id="selectUserInfo" parameterType="string" resultMap="userMap">
 		<![CDATA[
-			SELECT
-				*
+			SELECT 
+				A.user_id, A.name, B.dept_nm 
 			FROM 
-				tb_user
+				TB_USER A INNER JOIN TB_DEPT_CD B ON A.dept_cd = B.dept_cd
 			WHERE
-				user_id = #{userID};
+				user_id = #{userId}
 		]]>
 	</select>
 	
@@ -31,7 +31,7 @@
 			FROM 
 				tb_user
 			where
-				user_id = #{userId};
+				user_id = #{userId}
 		]]>
 	</select>
 </mapper>

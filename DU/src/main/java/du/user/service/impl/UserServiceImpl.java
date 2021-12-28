@@ -5,16 +5,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import du.user.dao.UserDAO;
+import du.user.domain.UserVO;
 import du.user.service.UserService;
 
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;
 
 	@Override
-	public boolean isLogin(String userId, String userPwd) throws Exception {
+	public boolean selectPwd(String userId, String userPwd) throws Exception {
 
 		if (!StringUtils.hasText(userId) || !StringUtils.hasText(userPwd)) {
 			throw new RuntimeException();
@@ -27,6 +28,11 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public UserVO selectUserInfo(String userId) {
+		return userDAO.selectUserInfo(userId);
 	}
 
 }
