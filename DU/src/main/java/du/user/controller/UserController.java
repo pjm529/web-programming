@@ -26,4 +26,10 @@ public class UserController {
 		
 		return "redirect:/loginPage.do";
 	}
+	
+	@RequestMapping("/userModify.do")
+	public String userModify(@ModelAttribute UserVO user) {
+		userService.updateUser(user);
+		return "redirect:/logout.do";
+	}
 }

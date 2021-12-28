@@ -13,4 +13,6 @@ public interface UserService {
 	public Boolean loginProcess(HttpServletRequest request, UserVO user);
 	
 	public void insertUser(UserVO user);
+	
+	public void updateUser(UserVO user);
 }
