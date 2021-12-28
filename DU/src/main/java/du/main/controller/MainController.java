@@ -35,6 +35,11 @@ public class MainController {
 		return "login.jsp";
 	}
 	
+	@RequestMapping("/userInfo.do")
+	public String userInfo() {
+		return "user/userInfo.jsp";
+	}
+	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		
