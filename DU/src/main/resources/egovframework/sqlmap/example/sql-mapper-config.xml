@@ -4,5 +4,6 @@
 <configuration>
     <typeAliases>
 		<typeAlias alias="UserVO" type="du.user.domain.UserVO" />
+		<typeAlias alias="DeptVO" type="du.dept.domain.DeptVO" />
     </typeAliases>
 </configuration>
