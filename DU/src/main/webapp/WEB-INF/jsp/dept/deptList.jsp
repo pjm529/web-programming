@@ -26,5 +26,8 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div>
+		<button type="button" onclick="window.location.href='deptInsertPage.do'">등록</button>
+	</div>
 </body>
 </html>

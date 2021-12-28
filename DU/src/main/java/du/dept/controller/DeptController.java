@@ -15,14 +15,24 @@ public class DeptController {
 
 	@Autowired
 	private DeptService deptService;
-	
+
 	@RequestMapping("/deptPage.do")
 	public ModelAndView deptPage() {
 		ModelAndView mav = new ModelAndView("dept/deptList.jsp");
-		
+
 		List<DeptVO> dept = deptService.selectDeptList();
 		mav.addObject("dept", dept);
 		return mav;
 	}
 
+	@RequestMapping("/deptInsertPage.do")
+	public String deptInserPage() {
+		return "dept/deptInsert.jsp";
+	}
+	
+	@RequestMapping("/deptInsert.do")
+	public String deptInsert(DeptVO dept) {
+		deptService.insertDept(dept);
+		return "redirect:/deptPage.do";
+	}
 }

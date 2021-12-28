@@ -20,4 +20,9 @@ public class DeptServiceImpl implements DeptService {
 		return deptDAO.selectDeptList();
 	}
 
+	@Override
+	public void insertDept(DeptVO dept) {
+		deptDAO.insertDept(dept);
+	}
+
 }

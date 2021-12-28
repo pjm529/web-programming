@@ -15,4 +15,14 @@
 				tb_dept_cd
 		]]>
 	</select>
+	
+	<insert id="insertDept" parameterType="DeptVO">
+		<![CDATA[
+			INSERT INTO tb_dept_cd
+				(dept_cd, dept_nm)
+			VALUES
+				(#{deptCd}, #{deptNm})
+		]]>
+		
+	</insert>
 </mapper>
