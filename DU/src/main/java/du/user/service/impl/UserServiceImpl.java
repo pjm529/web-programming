@@ -64,6 +64,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void updateUser(UserVO user) {
+		
+		if(user.getPwd().isEmpty()) {
+			user.setPwd(userDAO.selectPwd(user.getUserId()));
+		}
 		userDAO.updateUser(user);
 	}
 
