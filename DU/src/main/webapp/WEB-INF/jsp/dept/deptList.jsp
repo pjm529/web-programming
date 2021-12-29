@@ -4,9 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-<link rel="stylesheet" href="css/main.css">
-<script type="text/javascript" src="js/bootstrap/bootstrap.bundle.js"></script>
 <meta charset="UTF-8">
 <title>부서 정보</title>
 </head>
