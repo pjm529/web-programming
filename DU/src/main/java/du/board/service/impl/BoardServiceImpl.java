@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import du.board.dao.BoardDAO;
 import du.board.domain.BoardVO;
 import du.board.service.BoardService;
+import du.common.Pagination;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -16,8 +17,13 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDAO;
 	
 	@Override
-	public List<BoardVO> selectBoardList() {
-		return boardDAO.selectBoardList();
+	public List<BoardVO> selectBoardList(Pagination pagination) {
+		return boardDAO.selectBoardList(pagination);
+	}
+
+	@Override
+	public int selectBoardListCnt() {
+		return boardDAO.selectBoardListCnt();
 	}
 
 }
