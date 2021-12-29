@@ -15,7 +15,7 @@
 	<select id="selectBoardList" resultMap="boardMap">
 		<![CDATA[
 			SELECT 
-				B.*, U.name AS wrtier_name
+				B.*, U.name AS writer_name
 			FROM 
 				tb_board B JOIN tb_user U ON B.writer_id = U.user_id
 			ORDER BY B.idx;
