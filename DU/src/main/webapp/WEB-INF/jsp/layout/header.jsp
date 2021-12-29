@@ -11,7 +11,8 @@
 </head>
 <body>
 <div class="logoDiv">
-	<img alt="대구대학교 로고" src="images/symbol_1.png">
+	<img alt="대구대학교 로고" src="images/symbol_1.png" 
+		onclick="window.location.href='mainPage.do'">
 </div>
 
 <ul class="infoUl">

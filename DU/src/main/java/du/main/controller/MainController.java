@@ -22,15 +22,15 @@ public class MainController {
 	public String mainPageByPost(HttpServletRequest request, @ModelAttribute UserVO user) throws Exception {
 
 		if (userService.loginProcess(request, user)) {
-			return "main.jsp";
+			return "redirect:/mainPage.do";
 		} else {
 
-			return "login.jsp";
+			return "redirect:/loginPage.do";
 		}
 
 	}
 
-	@RequestMapping(value = "/loginPage.do", method = RequestMethod.GET)
+	@RequestMapping("/loginPage.do")
 	public String loginPage() {
 		return "login.jsp";
 	}
@@ -40,7 +40,16 @@ public class MainController {
 		
 		session.removeAttribute("USER");
 		
-		return "login.jsp";
+		return "redirect:/loginPage.do";
+	}
+	
+	@RequestMapping("/mainPage.do")
+	public String mainPage(HttpSession session) {
 		
+		if(session.getAttribute("USER") == null) {
+			return "redirect:/loginPage.do";
+		}
+		
+		return "main.jsp";
 	}
 }
