@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BoardDAO">
+	
+	<resultMap type="BoardVO" id="boardMap">
+		<id		column="idx"			property="idx" />
+		<result column="title"			property="title" />
+		<result column="content"		property="content" />
+		<result column="writer_id"		property="writerId" />
+		<result column="writer_name"	property="writerName" />
+		<result column="regist_date"	property="registDate" />
+		<result column="modify_date"	property="modifyDate" />
+	</resultMap>
+	
+	<select id="selectBoardList" resultMap="boardMap">
+		<![CDATA[
+			SELECT 
+				B.*, U.name AS wrtier_name
+			FROM 
+				tb_board B JOIN tb_user U ON B.writer_id = U.user_id
+			ORDER BY B.idx;
+		]]>
+	</select>
+</mapper>
