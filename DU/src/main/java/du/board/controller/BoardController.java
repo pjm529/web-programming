@@ -1,7 +1,11 @@
 package du.board.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,39 +99,99 @@ public class BoardController {
 	}
 
 	@RequestMapping("/boardDelete.do")
-	public String boardDelete(long idx, HttpSession session) {
+	public String boardDelete(long idx, HttpSession session, HttpServletResponse response) {
 
-		if (session.getAttribute("USER") == null) {
+		BoardVO board = boardService.selectBoard(idx);
+		UserVO user = (UserVO) session.getAttribute("USER");
+
+		if (user == null) {
 			return "redirect:/loginPage.do";
-		}
-		boardService.deleteBoard(idx);
+		} else if (board.getWriterId().equals(user.getUserId())) {
 
-		return "redirect:/boardListPage.do";
+			boardService.deleteBoard(idx);
+
+			return "redirect:/boardListPage.do";
+			
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+
+			try {
+
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('권한이 없습니다.'); history.back();</script>");
+				out.flush();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return null;
+		}
+
 	}
 
 	@RequestMapping("/boardModifyPage/{idx}.do")
-	public ModelAndView boardModifyPage(@PathVariable("idx") long idx, HttpSession session) {
+	public ModelAndView boardModifyPage(@PathVariable("idx") long idx, HttpSession session,
+			HttpServletResponse response) {
 
-		if (session.getAttribute("USER") == null) {
+		BoardVO board = boardService.selectBoard(idx);
+		UserVO user = (UserVO) session.getAttribute("USER");
+
+		if (user == null) {
+
 			ModelAndView mav = new ModelAndView("login.jsp");
 			return mav;
-		}
-		
-		ModelAndView mav = new ModelAndView("board/boardModify.jsp");
-		BoardVO board = boardService.selectBoard(idx);
-		
-		mav.addObject("board", board);
-		return mav;
-	}
-	
-	@RequestMapping("/boardModify.do")
-	public String boardModify(@ModelAttribute BoardVO board, HttpSession session) {
 
-		if (session.getAttribute("USER") == null) {
-			return "redirect:/loginPage.do";
+		} else if (board.getWriterId().equals(user.getUserId())) {
+
+			ModelAndView mav = new ModelAndView("board/boardModify.jsp");
+			mav.addObject("board", board);
+
+			return mav;
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+
+			try {
+
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('권한이 없습니다.'); history.back();</script>");
+				out.flush();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return null;
 		}
+	}
+
+	@RequestMapping("/boardModify.do")
+	public String boardModify(@ModelAttribute BoardVO board, HttpSession session, HttpServletResponse response) {
+
+		UserVO user = (UserVO) session.getAttribute("USER");
+		BoardVO board2 = boardService.selectBoard(board.getIdx());
 		
-		boardService.updateBoard(board);
-		return "redirect:/boardInfoPage/"+ Long.toBinaryString(board.getIdx()) +".do";
+		if (user == null) {
+			return "redirect:/loginPage.do";
+		} else if (board2.getWriterId().equals(user.getUserId())) {
+
+			boardService.updateBoard(board);
+			return "redirect:/boardInfoPage/" + Long.toBinaryString(board.getIdx()) + ".do";
+
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+
+			try {
+
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('권한이 없습니다.'); history.back();</script>");
+				out.flush();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return null;
+		}
 	}
 }

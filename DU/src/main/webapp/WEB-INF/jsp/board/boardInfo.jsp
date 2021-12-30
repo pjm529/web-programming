@@ -35,8 +35,11 @@
 		</tr>
 	</table>
 	<button type="button" class="btn btn-secondary btn-sm" onclick="history.back(); return false;">이전</button>
-	<button type="button" class="btn btn-secondary btn-sm" id="deleteBtn">삭제</button>
-	<button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='${pageContext.request.contextPath}/boardModifyPage/${board.idx}.do'">수정</button>
+	
+	<c:if test="${board.writerId == USER.userId }">
+		<button type="button" class="btn btn-secondary btn-sm" id="deleteBtn">삭제</button>
+		<button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='${pageContext.request.contextPath}/boardModifyPage/${board.idx}.do'">수정</button>
+	</c:if>
 	
 <script>
 	
