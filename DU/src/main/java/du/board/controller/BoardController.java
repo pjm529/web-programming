@@ -57,7 +57,7 @@ public class BoardController {
 		if (session.getAttribute("USER") == null) {
 			return "redirect:/loginPage.do";
 		}
-		
+
 		return "board/boardWrite.jsp";
 	}
 
@@ -77,18 +77,32 @@ public class BoardController {
 	}
 
 	@RequestMapping("/boardInfoPage/{idx}.do")
-	public ModelAndView boardInfoPage(@PathVariable("idx") long idx) {
-		
+	public ModelAndView boardInfoPage(@PathVariable("idx") long idx, HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			ModelAndView mav = new ModelAndView("login.jsp");
+			return mav;
+		}
+
 		ModelAndView mav = new ModelAndView("board/boardInfo.jsp");
-		
+
 		BoardVO board = boardService.selectBoard(idx);
 
 		mav.addObject("board", board);
-		
-		System.out.println(board.getTitle());
-		System.out.println(board.getContent());
-		
+
 		return mav;
-		
+
+	}
+
+	@RequestMapping("/boardDelete/{idx}.do")
+	public String boardDelete(@PathVariable("idx") long idx, HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			return "redirect:/loginPage.do";
+		}
+		boardService.deleteBoard(idx);
+
+		return "redirect:/boardListPage.do";
+
 	}
 }

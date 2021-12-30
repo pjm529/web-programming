@@ -14,5 +14,7 @@ public interface BoardDAO {
 	public BoardVO selectBoard(long idx);
 	
 	public void insertBoard(BoardVO board);
+	
+	public void deleteBoard(long idx);
 
 }
