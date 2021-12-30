@@ -17,4 +17,5 @@ public interface BoardService {
 
 	public void deleteBoard(long idx);
 
+	public void updateBoard(BoardVO board);
 }

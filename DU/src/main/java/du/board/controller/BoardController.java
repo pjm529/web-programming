@@ -103,6 +103,31 @@ public class BoardController {
 		boardService.deleteBoard(idx);
 
 		return "redirect:/boardListPage.do";
+	}
 
+	@RequestMapping("/boardModifyPage/{idx}.do")
+	public ModelAndView boardModifyPage(@PathVariable("idx") long idx, HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			ModelAndView mav = new ModelAndView("login.jsp");
+			return mav;
+		}
+		
+		ModelAndView mav = new ModelAndView("board/boardModify.jsp");
+		BoardVO board = boardService.selectBoard(idx);
+		
+		mav.addObject("board", board);
+		return mav;
+	}
+	
+	@RequestMapping("/boardModify.do")
+	public String boardModify(@ModelAttribute BoardVO board, HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			return "redirect:/loginPage.do";
+		}
+		
+		boardService.updateBoard(board);
+		return "redirect:/boardInfoPage/"+ Long.toBinaryString(board.getIdx()) +".do";
 	}
 }
