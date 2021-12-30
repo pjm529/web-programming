@@ -94,8 +94,8 @@ public class BoardController {
 
 	}
 
-	@RequestMapping("/boardDelete/{idx}.do")
-	public String boardDelete(@PathVariable("idx") long idx, HttpSession session) {
+	@RequestMapping("/boardDelete.do")
+	public String boardDelete(long idx, HttpSession session) {
 
 		if (session.getAttribute("USER") == null) {
 			return "redirect:/loginPage.do";

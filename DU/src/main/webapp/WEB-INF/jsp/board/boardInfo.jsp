@@ -42,14 +42,36 @@
 		deleteBtn.onclick = function() {
 			
 			if(confirm("삭제하시겠습니까?")) {
-				url = "${pageContext.request.contextPath }/boardDelete/${board.idx}.do";
-				
-				location.href = url;
+				var path = "${pageContext.request.contextPath }/boardDelete.do";
+				var params = {
+					"idx": "${board.idx}"
+				}
+				post(path, params);
 			} else {
 				return;
 			}
 		}
+	}
+	
+	function post(path, params) {
+		const form = document.createElement('form');
+		form.method = "post";
+		form.action = path;		
 		
+		for(const key in params) {
+			if(params.hasOwnProperty(key)) {
+				const hiddenField = document.createElement('input');
+				hiddenField.type = "hidden";
+				hiddenField.name = key;
+				hiddenField.value = params[key];
+				
+				form.appendChild(hiddenField);
+			}
+		}
+		
+		document.body.append(form);
+		
+		form.submit();
 	}
 </script>	
 </body>
