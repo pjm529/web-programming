@@ -38,7 +38,7 @@
 	
 	<c:if test="${board.writerId == USER.userId }">
 		<button type="button" class="btn btn-secondary btn-sm" id="deleteBtn">삭제</button>
-		<button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='${pageContext.request.contextPath}/boardModifyPage/${board.idx}.do'">수정</button>
+		<button type="button" class="btn btn-primary btn-sm" id="modifyBtn">수정</button>
 	</c:if>
 	
 <script>
@@ -53,11 +53,22 @@
 				var path = "${pageContext.request.contextPath }/boardDelete.do";
 				var params = {
 					"idx": "${board.idx}"
-				}
+				};
 				post(path, params);
 			} else {
 				return;
 			}
+		}
+		
+		var modifyBtn = document.getElementById("modifyBtn");
+		
+		modifyBtn.onclick = function() {
+			
+			var path = '${pageContext.request.contextPath}/boardModifyPage.do';
+			var params = {
+				"idx": "${board.idx}"
+			};
+			post(path, params);
 		}
 	}
 	

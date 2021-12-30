@@ -130,8 +130,8 @@ public class BoardController {
 
 	}
 
-	@RequestMapping("/boardModifyPage/{idx}.do")
-	public ModelAndView boardModifyPage(@PathVariable("idx") long idx, HttpSession session,
+	@RequestMapping("/boardModifyPage.do")
+	public ModelAndView boardModifyPage(long idx, HttpSession session,
 			HttpServletResponse response) {
 
 		BoardVO board = boardService.selectBoard(idx);
