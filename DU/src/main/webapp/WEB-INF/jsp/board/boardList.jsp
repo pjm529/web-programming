@@ -12,7 +12,7 @@
 	<header>
 		<jsp:include page="/WEB-INF/jsp/layout/header.jsp"></jsp:include>
 	</header>
-
+	<input type="hidden" id="listSize" value="<c:out value='${pagination.listSize}' />">
 	<div>
 		<table>
 			<tr>
@@ -74,6 +74,7 @@
 
 	window.onload = function() {
 		
+		var listSize = document.getElementById("listSize");
 		var searchTitle = document.getElementById("searchTitle");
 		var searchBtn = document.getElementById("searchBtn");
 		
@@ -118,7 +119,7 @@
 			
 			var url = "boardListPage.do";
 			url = url + "?title=" + searchTitle.value;
-			
+			url = url + "&listSize=" + listSize.value;
 			location.href = url;
  		}
 		
@@ -133,6 +134,7 @@
 		
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
+		url = url + "&listSize=" + listSize.value;
 		url = url + "&title=" + searchTitle.value;
 		
 		location.href = url;
@@ -144,6 +146,7 @@
 		
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
+		url = url + "&listSize=" + listSize.value;
 		url = url + "&title=" + searchTitle.value;
 		
 		location.href = url;
@@ -158,6 +161,7 @@
 		
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
+		url = url + "&listSize=" + listSize.value;
 		url = url + "&title=" + searchTitle.value;
 		
 		location.href = url;
