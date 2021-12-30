@@ -5,8 +5,7 @@
 	<bean name="propertiesService" class="egovframework.rte.fdl.property.impl.EgovPropertyServiceImpl" destroy-method="destroy">
 		<property name="properties">
 	        <map>
-	        	<entry key="pageUnit" value="10"/>
-	        	<entry key="pageSize" value="10"/>
+	        	<entry key="fileStorePath" value="C:/Temp/"/> <!-- C드라이브에 Temp폴더 필요 -->
 	        </map>
 		</property>
 	</bean>
