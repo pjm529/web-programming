@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -75,4 +76,19 @@ public class BoardController {
 		return "redirect:/boardListPage.do";
 	}
 
+	@RequestMapping("/boardInfoPage/{idx}.do")
+	public ModelAndView boardInfoPage(@PathVariable("idx") long idx) {
+		
+		ModelAndView mav = new ModelAndView("board/boardInfo.jsp");
+		
+		BoardVO board = boardService.selectBoard(idx);
+
+		mav.addObject("board", board);
+		
+		System.out.println(board.getTitle());
+		System.out.println(board.getContent());
+		
+		return mav;
+		
+	}
 }

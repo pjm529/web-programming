@@ -35,6 +35,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public BoardVO selectBoard(long idx) {
+		return boardDAO.selectBoard(idx);
+	}
+
+	@Override
 	public void insertBoard(BoardVO board) {
 		boardDAO.insertBoard(board);
 	}

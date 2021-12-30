@@ -11,10 +11,10 @@
 		<jsp:include page="/WEB-INF/jsp/layout/header.jsp"></jsp:include>
 	</header>
 	<form action="boardWrite.do" method="post">
-		<table>
+		<table class="table table-light" style="width: 500px;">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" required></td>
+				<td><input type="text" name="title" style="width: 100%;" required></td>
 			</tr>
 			<tr>
 				<th>내용</th>
