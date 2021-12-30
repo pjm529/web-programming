@@ -31,8 +31,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int selectBoardListCnt(String title) {
-		
 		return boardDAO.selectBoardListCnt(title);
+	}
+
+	@Override
+	public void insertBoard(BoardVO board) {
+		boardDAO.insertBoard(board);
 	}
 
 }

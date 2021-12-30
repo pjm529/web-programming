@@ -10,5 +10,7 @@ public interface BoardService {
 	public List<BoardVO> selectBoardList(Pagination pagination, String title);
 
 	public int selectBoardListCnt(String title);
+	
+	public void insertBoard(BoardVO board);
 
 }

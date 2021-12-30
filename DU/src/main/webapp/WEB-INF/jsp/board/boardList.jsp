@@ -13,7 +13,7 @@
 		<jsp:include page="/WEB-INF/jsp/layout/header.jsp"></jsp:include>
 	</header>
 	<input type="hidden" id="listSize" value="<c:out value='${pagination.listSize}' />">
-	<div>
+	<div id="filterDiv">
 		<table>
 			<tr>
 				<th>제목</th>
@@ -22,6 +22,7 @@
 						class="btn btn-secondary btn-sm">검색</button>
 			</tr>
 		</table>
+		<button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='boardWritePage.do'">게시글 등록</button>
 	</div>
 
 	<table class="table table-striped" id="dataList">

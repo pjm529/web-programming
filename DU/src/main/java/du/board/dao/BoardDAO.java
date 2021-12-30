@@ -10,5 +10,7 @@ public interface BoardDAO {
 	public List<BoardVO> selectBoardList(HashMap<String, Object> map);
 	
 	public int selectBoardListCnt(String title);
+	
+	public void insertBoard(BoardVO board);
 
 }

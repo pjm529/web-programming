@@ -29,3 +29,8 @@ header {
 	text-decoration: none;
 	color: black;
 }
+
+#filterDiv {
+	display: flex;
+	justify-content: space-between;
+}
