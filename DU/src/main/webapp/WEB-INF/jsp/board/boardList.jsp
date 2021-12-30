@@ -25,13 +25,14 @@
 		<button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='boardWritePage.do'">게시글 등록</button>
 	</div>
 
-	<table class="table table-hover" id="dataList">
+	<table class="table table-hover" id="dataList" style="text-align: center;">
 		<thead>
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
 				<th>작성자</th>
 				<th>등록날짜</th>
+				<th>수정날짜</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -40,7 +41,8 @@
 					<td><c:out value="${status.count + pagination.startList}" /></td>
 					<td><c:out value="${item.title}" /></td>
 					<td><c:out value="${item.writerName}" /></td>
-					<td><c:out value="${item.registDate}" /></td>
+					<td style="width: 230px;"><c:out value="${item.registDate}" /></td>
+					<td style="width: 230px;"><c:out value="${item.modifyDate}" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>

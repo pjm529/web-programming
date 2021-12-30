@@ -29,6 +29,10 @@
 			<th>등록날짜</th>
 			<td><c:out value="${board.registDate}"/></td>
 		</tr>
+		<tr>
+			<th>수정날짜</th>
+			<td><c:out value="${board.modifyDate}"/></td>
+		</tr>
 	</table>
 	<button type="button" class="btn btn-secondary btn-sm" onclick="history.back(); return false;">이전</button>
 	<button type="button" class="btn btn-secondary btn-sm" id="deleteBtn">삭제</button>
