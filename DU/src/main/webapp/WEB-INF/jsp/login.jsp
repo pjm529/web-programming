@@ -20,7 +20,7 @@
 		<h1>Login Page</h1>
 	</div>
 	
-	<form action="login.do" method="post">
+	<form action="${pageContext.request.contextPath}/login.do" method="post">
 		<fieldset class="loginField">
 			<legend>Login</legend>
 			<div>
@@ -36,7 +36,7 @@
 				</table>	
 			</div>
 			<div>
-				<button type="button" onclick="window.location.href='signUpPage.do'">회원가입</button>
+				<button type="button" onclick="window.location.href='${pageContext.request.contextPath}/signUpPage.do'">회원가입</button>
 				<button type="submit">submit</button>
 				<button type="reset">reset</button>
 			</div>
