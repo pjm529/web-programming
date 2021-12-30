@@ -26,7 +26,12 @@ public class BoardController {
 	public ModelAndView boardListPage(@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range,
 			@RequestParam(required = false, defaultValue = "3") int listSize,
-			@RequestParam(required = false, defaultValue = "") String title) {
+			@RequestParam(required = false, defaultValue = "") String title, HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			ModelAndView mav = new ModelAndView("login.jsp");
+			return mav;
+		}
 
 		ModelAndView mav = new ModelAndView("board/boardList.jsp");
 
@@ -38,25 +43,35 @@ public class BoardController {
 
 		List<BoardVO> boardList = boardService.selectBoardList(pagination, title);
 		mav.addObject("boardList", boardList);
-		
+
 		mav.addObject("title", title);
 
 		return mav;
+
 	}
-	
+
 	@RequestMapping("/boardWritePage.do")
-	public String boardWritePage() {
+	public String boardWritePage(HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			return "redirect:/loginPage.do";
+		}
+		
 		return "board/boardWrite.jsp";
 	}
-	
+
 	@RequestMapping("/boardWrite.do")
 	public String boardWrite(@ModelAttribute BoardVO board, HttpSession session) {
-		
+
 		UserVO user = (UserVO) session.getAttribute("USER");
-		
+
+		if (user == null) {
+			return "redirect:/loginPage.do";
+		}
+
 		board.setWriterId(user.getUserId());
-		
 		boardService.insertBoard(board);
+
 		return "redirect:/boardListPage.do";
 	}
 

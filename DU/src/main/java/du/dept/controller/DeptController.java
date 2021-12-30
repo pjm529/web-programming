@@ -2,6 +2,8 @@ package du.dept.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,13 @@ public class DeptController {
 	private DeptService deptService;
 
 	@RequestMapping("/deptPage.do")
-	public ModelAndView deptPage() {
+	public ModelAndView deptPage(HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			ModelAndView mav = new ModelAndView("login.jsp");
+			return mav;
+		}
+
 		ModelAndView mav = new ModelAndView("dept/deptList.jsp");
 
 		List<DeptVO> dept = deptService.selectDeptList();
@@ -26,18 +34,33 @@ public class DeptController {
 	}
 
 	@RequestMapping("/deptInsertPage.do")
-	public String deptInserPage() {
+	public String deptInserPage(HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			return "redirect:/loginPage.do";
+		}
+
 		return "dept/deptInsert.jsp";
 	}
-	
+
 	@RequestMapping("/deptInsert.do")
-	public String deptInsert(DeptVO dept) {
+	public String deptInsert(DeptVO dept, HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			return "redirect:/loginPage.do";
+		}
+
 		deptService.insertDept(dept);
 		return "redirect:/deptPage.do";
 	}
-	
+
 	@RequestMapping("/deptDelete.do")
-	public String deptDelete(String deptCd) {
+	public String deptDelete(String deptCd, HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			return "redirect:/loginPage.do";
+		}
+
 		deptService.deleteDept(deptCd);
 		return "redirect:/deptPage.do";
 	}

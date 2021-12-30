@@ -20,17 +20,27 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private DeptService deptService;
 
 	@RequestMapping("/userInfoConfirmPage.do")
-	public String userInfoConfirmPage() {
+	public String userInfoConfirmPage(HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			return "redirect:/loginPage.do";
+		}
+		
 		return "user/userInfoConfirm.jsp";
 	}
 
 	@RequestMapping("/userInfoConfirm.do")
-	public ModelAndView userInfoConfirm(@ModelAttribute UserVO user) {
+	public ModelAndView userInfoConfirm(@ModelAttribute UserVO user, HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			ModelAndView mav = new ModelAndView("login.jsp");
+			return mav;
+		}
 
 		if (userService.selectPwd(user.getUserId(), user.getPwd())) {
 			ModelAndView mav = new ModelAndView("user/userInfo.jsp");
@@ -46,7 +56,7 @@ public class UserController {
 
 	@RequestMapping("/signUpPage.do")
 	public ModelAndView signUpPage() {
-		
+
 		ModelAndView mav = new ModelAndView("user/signUp.jsp");
 		List<DeptVO> dept = deptService.selectDeptList();
 		mav.addObject("dept", dept);
@@ -62,14 +72,22 @@ public class UserController {
 	}
 
 	@RequestMapping("/userModify.do")
-	public String userModify(@ModelAttribute UserVO user) {
+	public String userModify(@ModelAttribute UserVO user, HttpSession session) {
+
+		if (session.getAttribute("USER") == null) {
+			return "redirect:/loginPage.do";
+		}
+
 		userService.updateUser(user);
 		return "redirect:/logout.do";
 	}
 
 	@RequestMapping("/userDelete.do")
 	public String userDelete(HttpSession session) {
-		userService.deleteUser(session);
+
+		if (session.getAttribute("USER") != null) {
+			userService.deleteUser(session);
+		}
 
 		return "redirect:/loginPage.do";
 	}
