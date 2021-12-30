@@ -45,7 +45,7 @@
 		</tbody>
 	</table>
 
-	<div id="paginationBox">
+	<div id="paginationBox" style="display: flex; justify-content: center; align-items: center;">
 		<ul class="pagination">
 			<c:if test="${pagination.prev}">
 				<li class="page-item"><a class="page-link" href="#"
