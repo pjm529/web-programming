@@ -116,4 +116,16 @@ public class BoardVO {
 		this.handleType = handleType;
 	}
 
+	public boolean isExistAttFile() {
+		return attFile != null && attFile.getSize() > 0;
+	}
+
+	public boolean hasAttFile() {
+		return attIdx > 0;
+
+	}
+
+	public BoardAttFileVO getCriteria() {
+		return new BoardAttFileVO(attIdx, idx);
+	}
 }
