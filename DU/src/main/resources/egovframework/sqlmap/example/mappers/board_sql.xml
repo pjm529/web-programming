@@ -12,23 +12,35 @@
 		<result column="modify_date"	property="modifyDate" />
 	</resultMap>
 	
-	<select id="selectBoardList" resultMap="boardMap">
+	<select id="selectBoardList" parameterType="hashmap" resultMap="boardMap">
 		<![CDATA[
 			SELECT 
 				B.*, U.name AS writer_name
 			FROM 
-				tb_board B JOIN tb_user U ON B.writer_id = U.user_id
+				tb_board B INNER JOIN tb_user U ON B.writer_id = U.user_id
+		]]>
+			<where>
+				<if test="title != ''">
+					B.title LIKE CONCAT('%', #{title}, '%')	
+				</if>
+			</where>			
+		<![CDATA[
 			ORDER BY B.idx
 			LIMIT #{startList}, #{listSize}
 		]]>
 	</select>
 	
-	<select id="selectBoardListCnt" resultType="int">
+	<select id="selectBoardListCnt" parameterType="string" resultType="int">
 		<![CDATA[
 			SELECT
 				COUNT(*)
 			FROM
 				tb_board
-		]]>			
+		]]>
+			<where>
+				<if test="value != ''"> <!-- 단일 이라서 value씀 -->
+					title LIKE CONCAT('%', #{title}, '%')
+				</if>
+			</where>
 	</select>
 </mapper>

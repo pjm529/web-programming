@@ -7,8 +7,8 @@ import du.common.Pagination;
 
 public interface BoardService {
 
-	public List<BoardVO> selectBoardList(Pagination pagination);
+	public List<BoardVO> selectBoardList(Pagination pagination, String title);
 
-	public int selectBoardListCnt();
+	public int selectBoardListCnt(String title);
 
 }

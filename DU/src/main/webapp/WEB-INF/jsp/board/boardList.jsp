@@ -17,7 +17,7 @@
 		<table>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" id="searchTitle"></td>
+				<td><input type="text" id="searchTitle" value="<c:out value='${title}' />"></td>
 				<td><button type="button" id="searchBtn"
 						class="btn btn-secondary btn-sm">검색</button>
 			</tr>
@@ -34,9 +34,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${boardList}" var="item">
+			<c:forEach items="${boardList}" var="item" varStatus="status">
 				<tr>
-					<td><c:out value="${item.idx}" /></td>
+					<td><c:out value="${status.count + pagination.startList}" /></td>
 					<td><c:out value="${item.title}" /></td>
 					<td><c:out value="${item.writerName}" /></td>
 					<td><c:out value="${item.registDate}" /></td>
@@ -98,7 +98,7 @@
 			var tr = tbody.querySelectorAll("tr"); */
 			
 			// 방법 3
-			var tr = document.querySelectorAll("#dataList tbody tr")
+// 			var tr = document.querySelectorAll("#dataList tbody tr")
 
 			// 방법1 
 			/* for(var i = 0; i < tr.length; i++) {
@@ -106,16 +106,21 @@
 			} */
 			
 			// 방법2
-			for (var item of tr) {
-				var title = item.getElementsByTagName("td")[1].innerHTML;
+// 			for (var item of tr) {
+// 				var title = item.getElementsByTagName("td")[1].innerHTML;
 				
-				if (title.includes(searchTitle.value)) {
-					item.style.display = "";
-				} else {
-					item.style.display = "none";
-				}
-			}
-		}
+// 				if (title.includes(searchTitle.value)) {
+// 					item.style.display = "";
+// 				} else {
+// 					item.style.display = "none";
+// 				}
+// 			}
+			
+			var url = "boardListPage.do";
+			url = url + "?title=" + searchTitle.value;
+			
+			location.href = url;
+ 		}
 		
  	}
 	
@@ -128,6 +133,8 @@
 		
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
+		url = url + "&title=" + searchTitle.value;
+		
 		location.href = url;
 	}
 	
@@ -137,6 +144,7 @@
 		
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
+		url = url + "&title=" + searchTitle.value;
 		
 		location.href = url;
 	}
@@ -150,6 +158,7 @@
 		
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
+		url = url + "&title=" + searchTitle.value;
 		
 		location.href = url;
 	}
