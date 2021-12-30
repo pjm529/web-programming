@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-<link rel="stylesheet" href="css/main.css">
-<script type="text/javascript" src="js/bootstrap/bootstrap.bundle.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js"></script>
 </head>
 <body>
 <div class="logoDiv">
-	<img alt="대구대학교 로고" src="images/symbol_1.png" 
+	<img alt="대구대학교 로고" src="${pageContext.request.contextPath}/images/symbol_1.png" 
 		onclick="window.location.href='mainPage.do'">
 </div>
 
