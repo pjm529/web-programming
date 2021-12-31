@@ -22,6 +22,12 @@
 			<td style="width:80%; height: 100px;"><c:out value="${board.content}"/></td>
 		</tr>
 		<tr>
+			<th>첨부파일</th>
+			<td colspan="3">
+				<a href="#" onlick="downloadFile(); return false;">${board.attFilename}</a>
+			</td>
+		</tr>
+		<tr>
 			<th>작성자</th>
 			<td><c:out value="${board.writerName}"/></td>
 		</tr>
