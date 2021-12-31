@@ -29,10 +29,15 @@ public class BoardDAOImpl extends EgovAbstractMapper implements BoardDAO {
 	}
 
 	@Override
+	public BoardAttFileVO selectBoardAttFile(BoardAttFileVO criteria) {
+		return selectOne("BoardDAO.selectBoardAttFile", criteria);
+	}
+
+	@Override
 	public void insertBoard(BoardVO board) {
 		insert("BoardDAO.insertBoard", board);
 	}
-	
+
 	@Override
 	public void insertBoardAttFile(BoardAttFileVO attFileVO) {
 		insert("BoardDAO.insertBoardAttFile", attFileVO);
@@ -47,7 +52,5 @@ public class BoardDAOImpl extends EgovAbstractMapper implements BoardDAO {
 	public void updateBoard(BoardVO board) {
 		update("BoardDAO.updateBoard", board);
 	}
-
-	
 
 }

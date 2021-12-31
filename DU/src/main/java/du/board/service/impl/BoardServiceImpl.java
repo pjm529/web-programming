@@ -50,6 +50,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public BoardAttFileVO findBoardAttFile(BoardAttFileVO criteria) {
+		return boardDAO.selectBoardAttFile(criteria);
+	}
+
+	@Override
 	public void insertBoard(BoardVO board) throws Exception {
 		boardDAO.insertBoard(board);
 

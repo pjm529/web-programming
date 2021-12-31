@@ -14,6 +14,8 @@ public interface BoardDAO {
 	
 	public BoardVO selectBoard(long idx);
 	
+	public BoardAttFileVO selectBoardAttFile(BoardAttFileVO criteria);
+	
 	public void insertBoard(BoardVO board);
 	
 	public void insertBoardAttFile(BoardAttFileVO attFileVO);

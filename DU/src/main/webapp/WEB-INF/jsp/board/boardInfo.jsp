@@ -24,7 +24,7 @@
 		<tr>
 			<th>첨부파일</th>
 			<td colspan="3">
-				<a href="#" onlick="downloadFile(); return false;">${board.attFilename}</a>
+				<a href="#" onclick="downloadFile(); return false;">${board.attFilename}</a>
 			</td>
 		</tr>
 		<tr>
@@ -47,6 +47,10 @@
 		<button type="button" class="btn btn-primary btn-sm" id="modifyBtn">수정</button>
 	</c:if>
 	
+	<form id="fileDownload" action="${pageContext.request.contextPath}/download/boardAttFile.do" method="post">
+		<input type="hidden" name="boardIdx" value="${board.idx}">
+		<input type="hidden" name="idx" value="${board.attIdx}">
+	</form>
 <script>
 	
 	window.onload = function() {
@@ -97,6 +101,14 @@
 		document.body.append(form);
 		
 		form.submit();
+	}
+	
+	function downloadFile() {
+		var inputIdx = document.querySelector("#fileDownload > input[name='idx']");
+		
+		if(inputIdx.value) {
+			document.forms["fileDownload"].submit();
+		}
 	}
 </script>	
 </body>

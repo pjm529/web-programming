@@ -82,6 +82,23 @@
 		]]>
 	</select>
 	
+	<select id="selectBoardAttFile" parameterType="BoardAttFileVO" resultMap="boardAttMap">
+		<![CDATA[
+			SELECT
+				idx,
+				board_idx,
+				file_path,
+				old_filename,
+				new_filename,
+				file_size
+			FROM
+				tb_board_att_file
+			WHERE
+				idx = #{idx}
+				AND board_idx = #{boardIdx}
+		]]>
+	</select>
+	
 	<insert id="insertBoard" parameterType="BoardVO">
 		<![CDATA[
 			INSERT INTO tb_board
