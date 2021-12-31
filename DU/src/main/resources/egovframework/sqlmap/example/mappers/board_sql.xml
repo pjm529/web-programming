@@ -10,6 +10,17 @@
 		<result column="writer_name"	property="writerName" />
 		<result column="regist_date"	property="registDate" />
 		<result column="modify_date"	property="modifyDate" />
+		<result column="att_idx"		property="attIdx" />
+		<result column="att_filename"	property="attFilename" />
+	</resultMap>
+	
+	<resultMap type="BoardAttFileVO" id="boardAttMap">
+		<id 	column="idx"			property="idx" />
+		<result column="board_idx" 		property="boardIdx" />
+		<result column="file_path"		property="filePath" />
+		<result column="old_filename"	property="oldFilename" />
+		<result column="new_filename"	property="newFilename" />
+		<result column="file_size"		property="fileSize" />
 	</resultMap>
 	
 	<select id="selectBoardList" parameterType="hashmap" resultMap="boardMap">
@@ -46,12 +57,28 @@
 	
 	<select id="selectBoard" parameterType="long" resultMap="boardMap">
 		<![CDATA[
-			SELECT 
-				B.*, U.name AS writer_name
-			FROM 
-				tb_board B INNER JOIN tb_user U ON B.writer_id = U.user_id
-			WHERE
-				B.idx = #{idx}
+			SELECT
+				A.idx,
+				A.title,
+				A.content,
+				A.writer_id,
+				B.name AS writer_name,
+				A.regist_date,
+				A.modify_date,
+				C.idx as att_idx,
+				C.old_filename AS att_filename
+			FROM
+				tb_board A
+			INNER JOIN
+				tb_user B
+			ON
+				A.writer_id = B.user_id
+			LEFT OUTER JOIN
+				tb_board_att_file C
+			ON
+				A.idx = C.board_idx
+			WHERE 
+				A.idx = #{idx}
 		]]>
 	</select>
 	
