@@ -43,11 +43,11 @@
 	<button type="button" class="btn btn-secondary btn-sm" onclick="history.back(); return false;">이전</button>
 	
 	<c:if test="${board.writerId == USER.userId }">
-		<form id="postForm" method="post" style="display: inline;">
+		<form id="postForm" method="post" style="display: inline;" onsubmit="return false;">
 			<button type="submit" class="btn btn-secondary btn-sm" 
 			formaction="${pageContext.request.contextPath}/boardDelete.do" id="deleteBtn">삭제</button>
 			<button type="submit" class="btn btn-primary btn-sm"
-			formaction="${pageContext.request.contextPath}/boardModify.do">수정</button>
+			formaction="${pageContext.request.contextPath}/boardModifyPage.do" id="modifyBtn">수정</button>
 			<input type="hidden" name="idx" value="${board.idx}">
 			<input type="hidden" name="attIdx" value="${board.attIdx}">
 		</form>
@@ -63,6 +63,28 @@
 	window.onload = function() {
 		
 		var deleteBtn = document.getElementById("deleteBtn");
+		
+		deleteBtn.onclick = function () {
+			if(confirm("삭제하시겠습니까?")) {
+				alert("게시글이 삭제되었습니다.");
+				var postForm = document.querySelector("#postForm");
+				postForm.setAttribute("onsubmit", "return true;");
+				postForm.submit();
+			
+			} else {
+				return;
+			}
+		}
+		
+		
+		var modifyBtn = document.getElementById("modifyBtn");
+		
+		modifyBtn.onclick = function() {
+			var postForm = document.querySelector("#postForm");
+			postForm.setAttribute("onsubmit", "return true;");
+			postForm.submit();
+		} 
+		
 		
 		/* deleteBtn.onclick = function() {
 			
