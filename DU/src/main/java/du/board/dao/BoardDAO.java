@@ -3,6 +3,7 @@ package du.board.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import du.board.domain.BoardAttFileVO;
 import du.board.domain.BoardVO;
 
 public interface BoardDAO {
@@ -14,6 +15,8 @@ public interface BoardDAO {
 	public BoardVO selectBoard(long idx);
 	
 	public void insertBoard(BoardVO board);
+	
+	public void insertBoardAttFile(BoardAttFileVO attFileVO);
 	
 	public void deleteBoard(long idx);
 	

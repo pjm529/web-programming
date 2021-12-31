@@ -2,7 +2,6 @@ package du.board.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -66,7 +65,7 @@ public class BoardController {
 	}
 
 	@RequestMapping("/boardWrite.do")
-	public String boardWrite(@ModelAttribute BoardVO board, HttpSession session) {
+	public String boardWrite(@ModelAttribute BoardVO board, HttpSession session) throws Exception {
 
 		UserVO user = (UserVO) session.getAttribute("USER");
 
@@ -111,7 +110,7 @@ public class BoardController {
 			boardService.deleteBoard(idx);
 
 			return "redirect:/boardListPage.do";
-			
+
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 
@@ -131,8 +130,7 @@ public class BoardController {
 	}
 
 	@RequestMapping("/boardModifyPage.do")
-	public ModelAndView boardModifyPage(long idx, HttpSession session,
-			HttpServletResponse response) {
+	public ModelAndView boardModifyPage(long idx, HttpSession session, HttpServletResponse response) {
 
 		BoardVO board = boardService.selectBoard(idx);
 		UserVO user = (UserVO) session.getAttribute("USER");
@@ -170,7 +168,7 @@ public class BoardController {
 
 		UserVO user = (UserVO) session.getAttribute("USER");
 		BoardVO board2 = boardService.selectBoard(board.getIdx());
-		
+
 		if (user == null) {
 			return "redirect:/loginPage.do";
 		} else if (board2.getWriterId().equals(user.getUserId())) {

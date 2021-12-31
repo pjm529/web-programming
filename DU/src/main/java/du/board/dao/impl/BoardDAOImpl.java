@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import du.board.dao.BoardDAO;
+import du.board.domain.BoardAttFileVO;
 import du.board.domain.BoardVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
 
@@ -31,6 +32,11 @@ public class BoardDAOImpl extends EgovAbstractMapper implements BoardDAO {
 	public void insertBoard(BoardVO board) {
 		insert("BoardDAO.insertBoard", board);
 	}
+	
+	@Override
+	public void insertBoardAttFile(BoardAttFileVO attFileVO) {
+		insert("BoardDAO.insertBoardAttFile", attFileVO);
+	}
 
 	@Override
 	public void deleteBoard(long idx) {
@@ -41,5 +47,7 @@ public class BoardDAOImpl extends EgovAbstractMapper implements BoardDAO {
 	public void updateBoard(BoardVO board) {
 		update("BoardDAO.updateBoard", board);
 	}
+
+	
 
 }

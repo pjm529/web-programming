@@ -88,7 +88,38 @@
 				(title, content, writer_id)
 			VALUE
 				(#{title}, #{content}, #{writerId})
-		]]>		
+		]]>
+		
+		<!-- insert 후 idx값 return   -->
+		<selectKey keyProperty="idx" order="AFTER" resultType="_long">
+			<![CDATA[
+				SELECT LAST_INSERT_ID();
+			]]>
+		</selectKey>		
+	</insert>
+	
+	<insert id="insertBoardAttFile" parameterType="BoardAttFileVO">
+		<![CDATA[
+			INSERT INTO
+				tb_board_att_file
+			(
+				board_idx,
+				file_path,
+				old_filename,
+				new_filename,
+				file_size,
+				writer_id
+			)
+			VALUES
+			(
+				#{boardIdx},
+				#{filePath},
+				#{oldFilename},
+				#{newFilename},
+				#{fileSize},
+				#{writerId}
+			)		
+		]]>
 	</insert>
 	
 	<delete id="deleteBoard" parameterType="long">
