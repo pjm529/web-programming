@@ -104,16 +104,16 @@ public class BoardController {
 	}
 
 	@RequestMapping("/boardDelete.do")
-	public String boardDelete(long idx, HttpSession session, HttpServletResponse response) {
+	public String boardDelete(BoardVO board, HttpSession session, HttpServletResponse response) throws Exception {
 
-		BoardVO board = boardService.selectBoard(idx);
+		BoardVO board2 = boardService.selectBoard(board.getIdx());
 		UserVO user = (UserVO) session.getAttribute("USER");
 
 		if (user == null) {
 			return "redirect:/loginPage.do";
-		} else if (board.getWriterId().equals(user.getUserId())) {
+		} else if (board2.getWriterId().equals(user.getUserId())) {
 
-			boardService.deleteBoard(idx);
+			boardService.deleteBoard(board);
 
 			return "redirect:/boardListPage.do";
 
@@ -198,7 +198,7 @@ public class BoardController {
 			return null;
 		}
 	}
-	
+
 	@PostMapping("/download/boardAttFile.do")
 	public View downloadBoardAttFile(BoardAttFileVO criteria, Model model) throws Exception {
 		BoardAttFileVO attFileVO = boardService.findBoardAttFile(criteria);
@@ -206,7 +206,7 @@ public class BoardController {
 
 		model.addAttribute("downloadFile", file);
 		model.addAttribute("downloadFilename", attFileVO.getOldFilename());
-		
+
 		return new DownloadView();
 	}
 }

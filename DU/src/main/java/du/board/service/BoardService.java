@@ -18,7 +18,9 @@ public interface BoardService {
 
 	public void insertBoard(BoardVO board) throws Exception;
 
-	public void deleteBoard(long idx);
+	public void deleteBoard(BoardVO board) throws Exception;
+	
+	public void deleteBoardAttFile(BoardAttFileVO criteria) throws Exception;
 
 	public void updateBoard(BoardVO board);
 }

@@ -62,8 +62,26 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void deleteBoard(long idx) {
-		boardDAO.deleteBoard(idx);
+	public void deleteBoard(BoardVO board) throws Exception {
+		if (board.hasAttFile()) {
+			deleteBoardAttFile(board.getCriteria());
+		}
+		boardDAO.deleteBoard(board.getIdx());
+	}
+
+	@Override
+	public void deleteBoardAttFile(BoardAttFileVO criteria) throws Exception {
+		BoardAttFileVO attFileVO = boardDAO.selectBoardAttFile(criteria);
+
+		String fullAttFilePath = attFileVO.getFullAttFilePath();
+
+		File file = new File(fullAttFilePath);
+
+		if (file.exists() && !file.isDirectory()) {
+			file.delete();
+		}
+
+		boardDAO.deleteBoardAttFile(criteria);
 	}
 
 	@Override

@@ -43,8 +43,15 @@
 	<button type="button" class="btn btn-secondary btn-sm" onclick="history.back(); return false;">이전</button>
 	
 	<c:if test="${board.writerId == USER.userId }">
-		<button type="button" class="btn btn-secondary btn-sm" id="deleteBtn">삭제</button>
-		<button type="button" class="btn btn-primary btn-sm" id="modifyBtn">수정</button>
+		<form id="postForm" method="post" style="display: inline;">
+			<button type="submit" class="btn btn-secondary btn-sm" 
+			formaction="${pageContext.request.contextPath}/boardDelete.do" id="deleteBtn">삭제</button>
+			<button type="submit" class="btn btn-primary btn-sm"
+			formaction="${pageContext.request.contextPath}/boardModify.do">수정</button>
+			<input type="hidden" name="idx" value="${board.idx}">
+			<input type="hidden" name="attIdx" value="${board.attIdx}">
+		</form>
+		
 	</c:if>
 	
 	<form id="fileDownload" action="${pageContext.request.contextPath}/download/boardAttFile.do" method="post">
@@ -57,7 +64,7 @@
 		
 		var deleteBtn = document.getElementById("deleteBtn");
 		
-		deleteBtn.onclick = function() {
+		/* deleteBtn.onclick = function() {
 			
 			if(confirm("삭제하시겠습니까?")) {
 				var path = "${pageContext.request.contextPath }/boardDelete.do";
@@ -68,9 +75,9 @@
 			} else {
 				return;
 			}
-		}
+		} */
 		
-		var modifyBtn = document.getElementById("modifyBtn");
+		/* var modifyBtn = document.getElementById("modifyBtn");
 		
 		modifyBtn.onclick = function() {
 			
@@ -79,7 +86,7 @@
 				"idx": "${board.idx}"
 			};
 			post(path, params);
-		}
+		} */
 	}
 	
 	function post(path, params) {

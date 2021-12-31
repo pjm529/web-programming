@@ -22,6 +22,8 @@ public interface BoardDAO {
 	
 	public void deleteBoard(long idx);
 	
+	public void deleteBoardAttFile(BoardAttFileVO criteria);
+	
 	public void updateBoard(BoardVO board);
 
 }
