@@ -34,7 +34,7 @@ public class BoardAttFileVO {
 	}
 
 	public BoardAttFileVO(BoardVO vo) {
-		this.boardIdx = vo.getAttIdx();
+		this.boardIdx = vo.getIdx();
 		this.writerId = vo.getWriterId();
 		this.attFile = vo.getAttFile();
 	}
