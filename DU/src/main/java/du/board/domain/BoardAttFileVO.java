@@ -114,7 +114,7 @@ public class BoardAttFileVO {
 	public String getFullAttFilePath() throws FileNotFoundException {
 
 		if (idx > 0 && boardIdx > 0) {
-			return filePath + File.pathSeparator + newFilename;
+			return filePath + File.separator + newFilename;
 		}
 		throw new FileNotFoundException();
 	}
