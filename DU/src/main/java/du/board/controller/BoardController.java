@@ -180,7 +180,7 @@ public class BoardController {
 		} else if (board2.getWriterId().equals(user.getUserId())) {
 
 			boardService.updateBoard(board);
-			return "redirect:/boardInfoPage/" + Long.toBinaryString(board.getIdx()) + ".do";
+			return "redirect:/boardInfoPage/" + board.getIdx() + ".do";
 
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
