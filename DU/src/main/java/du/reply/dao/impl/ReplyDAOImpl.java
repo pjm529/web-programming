@@ -21,4 +21,9 @@ public class ReplyDAOImpl extends EgovAbstractMapper implements ReplyDAO {
 		return selectList("ReplyDAO.selectReplyList", boardIdx);
 	}
 
+	@Override
+	public void deleteReply(long idx) {
+		delete("ReplyDAO.deleteReply", idx);
+	}
+
 }

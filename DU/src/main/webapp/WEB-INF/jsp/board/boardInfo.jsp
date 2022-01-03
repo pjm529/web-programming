@@ -77,6 +77,8 @@
 						<td>
 							<c:out value="${item.content}" />
 							<fmt:parseDate value="${item.registDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date" />
+							<button type="button" style="float: right;" class="btn btn-secondary" 
+								onclick="deleteReply('${item.idx}')">삭제</button>
 							(<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss"/>)
 						</td>
 					</tr>
@@ -92,7 +94,7 @@
 		var deleteBtn = document.getElementById("deleteBtn");
 		
 		deleteBtn.onclick = function () {
-			if(confirm("삭제하시겠습니까?")) {
+			if(confirm("게시글을 삭제하시겠습니까?")) {
 				alert("게시글이 삭제되었습니다.");
 				var postForm = document.querySelector("#postForm");
 				postForm.setAttribute("onsubmit", "return true;");
@@ -138,6 +140,20 @@
 		} */
 	}
 	
+	function deleteReply(idx) {
+		if(confirm("댓글을 삭제하시겠습니까?")) {
+			var path = "${pageContext.request.contextPath}/replyDelete.do"
+			var params = {
+					"idx": idx,
+					"boardIdx": "${board.idx}"
+			};
+			alert("댓글이 삭제되었습니다.");
+			post(path, params);
+		} else {
+			return;
+		}
+	}
+	
 	function post(path, params) {
 		const form = document.createElement('form');
 		form.method = "post";
@@ -166,6 +182,8 @@
 			document.forms["fileDownload"].submit();
 		}
 	}
+	
+	
 </script>	
 </body>
 </html>

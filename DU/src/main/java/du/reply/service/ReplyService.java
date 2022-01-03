@@ -9,4 +9,6 @@ public interface ReplyService {
 	public void insertReply(ReplyVO reply);
 
 	public List<ReplyVO> selectReplyList(long boardIdx);
+	
+	public void deleteReply(long idx);
 }

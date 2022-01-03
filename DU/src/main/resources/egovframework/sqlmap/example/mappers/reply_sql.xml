@@ -31,5 +31,13 @@
 					R.board_idx = #{boardIdx}
 			]]>
 		
-	</select> 
+	</select>
+	
+	<delete id="deleteReply" parameterType="long">
+		<![CDATA[
+			DELETE FROM tb_reply
+			WHERE
+				idx = #{idx}
+		]]>
+	</delete> 
 </mapper>

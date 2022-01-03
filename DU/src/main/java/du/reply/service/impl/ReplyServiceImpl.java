@@ -25,4 +25,9 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyDAO.selectReplyList(boardIdx);
 	}
 
+	@Override
+	public void deleteReply(long idx) {
+		replyDAO.deleteReply(idx);
+	}
+
 }
