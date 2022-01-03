@@ -58,6 +58,21 @@
 		<input type="hidden" name="boardIdx" value="${board.idx}">
 		<input type="hidden" name="idx" value="${board.attIdx}">
 	</form>
+	
+	<div id="replyDiv" style="margin-top: 10px;">
+		<form action="${pageContext.request.contextPath}/replyWrite.do" method="post">
+			<table class="table table-light" style="width: 50%">
+				<tr>
+					<th style="width: 10%;">댓글</th>
+					<td>
+						<input type="text" name="content" style="width: 90%">
+						<button type="submit" class="btn btn-success">등록</button>
+					</td>
+				</tr>
+			</table>
+			<input type="hidden" name="boardIdx" value="${board.idx}">
+		</form>
+	</div>
 <script>
 	
 	window.onload = function() {

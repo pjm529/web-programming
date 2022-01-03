@@ -12,4 +12,12 @@
 		<result column="modify_date"	property="modifyDate" />
 	</resultMap>
 	
+	<insert id="insertReply" parameterType="replyVO">
+		<![CDATA[
+			INSERT INTO tb_reply
+				(board_idx, content, writer_id)
+			VALUE
+				(#{boardIdx}, #{content}, #{writerId})
+		]]>
+	</insert>
 </mapper>
