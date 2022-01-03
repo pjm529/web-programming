@@ -33,6 +33,17 @@
 		
 	</select>
 	
+	<select id="selectReply" parameterType="long" resultMap="ReplyMap">
+		<![CDATA[
+				SELECT
+					*
+				FROM
+					tb_reply
+				WHERE
+					idx = #{idx}
+			]]>
+	</select>
+	
 	<delete id="deleteReply" parameterType="long">
 		<![CDATA[
 			DELETE FROM tb_reply

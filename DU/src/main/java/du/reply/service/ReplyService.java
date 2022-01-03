@@ -10,5 +10,7 @@ public interface ReplyService {
 
 	public List<ReplyVO> selectReplyList(long boardIdx);
 	
+	public ReplyVO selectReply(long idx);
+	
 	public void deleteReply(long idx);
 }

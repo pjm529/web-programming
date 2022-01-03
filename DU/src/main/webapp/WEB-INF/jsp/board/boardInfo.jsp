@@ -77,8 +77,10 @@
 						<td>
 							<c:out value="${item.content}" />
 							<fmt:parseDate value="${item.registDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date" />
-							<button type="button" style="float: right;" class="btn btn-secondary" 
+							<c:if test="${item.writerId == USER.userId }">
+								<button type="button" style="float: right;" class="btn btn-secondary" 
 								onclick="deleteReply('${item.idx}')">삭제</button>
+							</c:if>
 							(<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss"/>)
 						</td>
 					</tr>
@@ -147,7 +149,6 @@
 					"idx": idx,
 					"boardIdx": "${board.idx}"
 			};
-			alert("댓글이 삭제되었습니다.");
 			post(path, params);
 		} else {
 			return;

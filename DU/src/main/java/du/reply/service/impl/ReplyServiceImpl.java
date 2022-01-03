@@ -14,7 +14,7 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Autowired
 	private ReplyDAO replyDAO;
-	
+
 	@Override
 	public void insertReply(ReplyVO reply) {
 		replyDAO.insertReply(reply);
@@ -23,6 +23,11 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public List<ReplyVO> selectReplyList(long boardIdx) {
 		return replyDAO.selectReplyList(boardIdx);
+	}
+
+	@Override
+	public ReplyVO selectReply(long idx) {
+		return replyDAO.selectReply(idx);
 	}
 
 	@Override
