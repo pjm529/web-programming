@@ -7,5 +7,6 @@
 		<typeAlias alias="DeptVO" type="du.dept.domain.DeptVO" />
 		<typeAlias alias="BoardVO" type="du.board.domain.BoardVO" />
 		<typeAlias alias="BoardAttFileVO" type="du.board.domain.BoardAttFileVO" />
+		<typeAlias alias="ReplyVO" type="du.reply.domain.ReplyVO" />
     </typeAliases>
 </configuration>
