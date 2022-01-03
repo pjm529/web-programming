@@ -87,13 +87,13 @@
 							
 							<c:choose>
 								<c:when test="${item.modifyDate != null}">
-									<fmt:parseDate value="${item.modifyDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date" />
-									<br>(<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss"/> 수정됨)
+									<fmt:parseDate value="${item.modifyDate}" pattern="yyyy-MM-dd'T'HH:mm" var="date" />
+									<br>(<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm"/> 수정됨)
 								</c:when>
 								
 								<c:otherwise>
-									<fmt:parseDate value="${item.registDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date" />
-									<br>(<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss"/>)
+									<fmt:parseDate value="${item.registDate}" pattern="yyyy-MM-dd'T'HH:mm" var="date" />
+									<br>(<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm"/>)
 								</c:otherwise>
 							</c:choose>
 						</td>
