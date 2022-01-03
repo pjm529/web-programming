@@ -20,4 +20,16 @@
 				(#{boardIdx}, #{content}, #{writerId})
 		]]>
 	</insert>
+	
+	<select id="selectReplyList" parameterType="long" resultMap="ReplyMap">
+			<![CDATA[
+				SELECT
+					R.*, U.`name` AS writer_name
+				FROM
+					tb_reply R INNER JOIN tb_user U ON R.writer_id = U.user_id
+				WHERE
+					R.board_idx = #{boardIdx}
+			]]>
+		
+	</select> 
 </mapper>

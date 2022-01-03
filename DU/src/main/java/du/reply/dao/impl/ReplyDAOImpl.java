@@ -1,5 +1,7 @@
 package du.reply.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import du.reply.dao.ReplyDAO;
@@ -12,6 +14,11 @@ public class ReplyDAOImpl extends EgovAbstractMapper implements ReplyDAO {
 	@Override
 	public void insertReply(ReplyVO reply) {
 		insert("ReplyDAO.insertReply", reply);
+	}
+
+	@Override
+	public List<ReplyVO> selectReplyList(long boardIdx) {
+		return selectList("ReplyDAO.selectReplyList", boardIdx);
 	}
 
 }

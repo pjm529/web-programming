@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,6 +70,17 @@
 						<button type="submit" class="btn btn-success">등록</button>
 					</td>
 				</tr>
+				
+				<c:forEach items="${replyList}" var="item" varStatus="status">
+					<tr>
+						<th style="width: 10%;"><c:out value="${item.writerName}" /></th>
+						<td>
+							<c:out value="${item.content}" />
+							<fmt:parseDate value="${item.registDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date" />
+							(<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss"/>)
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 			<input type="hidden" name="boardIdx" value="${board.idx}">
 		</form>
