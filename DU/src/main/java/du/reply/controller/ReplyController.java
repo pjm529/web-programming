@@ -69,4 +69,12 @@ public class ReplyController {
 		}
 
 	}
+	
+	@RequestMapping("/replyModify.do")
+	public String replyModify(@ModelAttribute ReplyVO reply) {
+		
+		replyService.updateReply(reply);
+		
+		return String.format("redirect:/boardInfoPage/%d.do", reply.getBoardIdx());
+	}
 }

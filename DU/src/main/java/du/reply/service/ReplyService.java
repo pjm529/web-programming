@@ -13,4 +13,6 @@ public interface ReplyService {
 	public ReplyVO selectReply(long idx);
 	
 	public void deleteReply(long idx);
+	
+	public void updateReply(ReplyVO reply);
 }

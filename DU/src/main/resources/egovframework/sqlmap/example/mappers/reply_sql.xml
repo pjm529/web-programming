@@ -50,5 +50,16 @@
 			WHERE
 				idx = #{idx}
 		]]>
-	</delete> 
+	</delete>
+	
+	<update id="updateReply" parameterType="replyVO">
+		<![CDATA[
+			UPDATE tb_reply
+			SET
+				content = #{content},
+				modify_date = NOW()
+			WHERE
+				idx = #{idx}
+		]]>
+	</update> 
 </mapper>

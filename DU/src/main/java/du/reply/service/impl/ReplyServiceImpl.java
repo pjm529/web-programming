@@ -35,4 +35,9 @@ public class ReplyServiceImpl implements ReplyService {
 		replyDAO.deleteReply(idx);
 	}
 
+	@Override
+	public void updateReply(ReplyVO reply) {
+		replyDAO.updateReply(reply);
+	}
+
 }

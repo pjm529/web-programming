@@ -67,19 +67,21 @@
 					<th style="width: 10%;">댓글</th>
 					<td>
 						<input type="text" name="content" style="width: 90%">
-						<button type="submit" class="btn btn-success">등록</button>
+						<button type="submit" class="btn btn-success btn-sm">등록</button>
 					</td>
 				</tr>
 				
 				<c:forEach items="${replyList}" var="item" varStatus="status">
 					<tr>
 						<th style="width: 10%;"><c:out value="${item.writerName}" /></th>
-						<td>
-							<c:out value="${item.content}" />
+						<td data-idx="${item.idx}">
+							<span><c:out value="${item.content}" /></span> 
 							<fmt:parseDate value="${item.registDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date" />
 							<c:if test="${item.writerId == USER.userId }">
-								<button type="button" style="float: right;" class="btn btn-secondary" 
-								onclick="deleteReply('${item.idx}')">삭제</button>
+								<button type="button" style="float: right; margin-left: 5px;" 
+									class="btn btn-primary btn-sm replyModifyBtn" >수정</button>
+								<button type="button" style="float: right;" class="btn btn-secondary btn-sm" 
+									onclick="deleteReply('${item.idx}')">삭제</button>
 							</c:if>
 							(<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss"/>)
 						</td>
@@ -89,6 +91,13 @@
 			<input type="hidden" name="boardIdx" value="${board.idx}">
 		</form>
 	</div>
+	
+	<form id="hiddenForm" style="display: none;" action="${pageContext.request.contextPath}/replyModify.do" method="post">
+		<input type="text" name="content" style="width: 80%; margin-rightL 6px;">
+		<input type="hidden" name="idx">
+		<input type="hidden" name="boardIdx" value="${board.idx}">
+		<button type="submit" class="btn btn-primary btn-sm">확인</button>
+	</form>
 <script>
 	
 	window.onload = function() {
@@ -140,6 +149,22 @@
 			};
 			post(path, params);
 		} */
+		
+		var replyModifyBtns = document.querySelectorAll(".replyModifyBtn");
+		
+		replyModifyBtns.forEach(el => el.addEventListener("click", event => {
+			
+			var td = el.parentNode;
+			
+			console.log(el);
+			console.log(td);
+			var content = td.getElementsByTagName("span")[0].innerHTML;
+			console.log(content);
+			
+			td.innerHTML = "";
+			
+			td.append(makeReplyUpdateForm(td.getAttribute("data-idx"), content));
+		}));
 	}
 	
 	function deleteReply(idx) {
@@ -153,6 +178,21 @@
 		} else {
 			return;
 		}
+	}
+	
+	function makeReplyUpdateForm(idx, content) {
+
+		var form = document.getElementById("hiddenForm").cloneNode(true);
+		form.style.display = "";
+		
+		var contentInput = form.getElementsByTagName("input")[0];
+		contentInput.value = content;
+		
+		var idxInput = form.getElementsByTagName("input")[1];
+		idxInput.value = idx;
+		
+		
+		return form;
 	}
 	
 	function post(path, params) {
