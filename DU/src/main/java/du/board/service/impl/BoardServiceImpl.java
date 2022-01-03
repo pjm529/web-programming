@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -85,8 +87,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void updateBoard(BoardVO board) {
+	public void updateBoard(BoardVO board, HttpSession session) throws Exception {
 		boardDAO.updateBoard(board);
+		updateBoardAttFile(board);
 	}
 
 	private void insertBoardAttFile(BoardVO boardVO) throws Exception {
@@ -135,6 +138,26 @@ public class BoardServiceImpl implements BoardService {
 		// 4. real file copy
 		File newFile = new File(filePath + File.separator + newFilename);
 		multipartFile.transferTo(newFile);
+	}
+
+	private void updateBoardAttFile(BoardVO boardVO) throws Exception {
+		String handleType = boardVO.getHandleType();
+		BoardAttFileVO criteria = boardVO.getCriteria();
+		boolean hasAttFile = boardVO.hasAttFile();
+
+		if ("fix".equals(handleType)) {
+			return;
+		}
+
+		if (hasAttFile) {
+			deleteBoardAttFile(criteria);
+		}
+
+		if ("del".equals(handleType)) {
+			return;
+		} else if ("chg".equals(handleType)) {
+			insertBoardAttFile(boardVO);
+		}
 	}
 
 }

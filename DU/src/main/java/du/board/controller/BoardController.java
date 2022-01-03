@@ -169,8 +169,9 @@ public class BoardController {
 		}
 	}
 
-	@RequestMapping("/boardModify.do")
-	public String boardModify(@ModelAttribute BoardVO board, HttpSession session, HttpServletResponse response) {
+	@PostMapping("/boardModify.do")
+	public String boardModify(@ModelAttribute BoardVO board, HttpSession session, HttpServletResponse response)
+			throws Exception {
 
 		UserVO user = (UserVO) session.getAttribute("USER");
 		BoardVO board2 = boardService.selectBoard(board.getIdx());
@@ -179,9 +180,11 @@ public class BoardController {
 			return "redirect:/loginPage.do";
 		} else if (board2.getWriterId().equals(user.getUserId())) {
 
-			boardService.updateBoard(board);
-			return "redirect:/boardInfoPage/" + board.getIdx() + ".do";
+			board.setWriterId(user.getUserId());
+			boardService.updateBoard(board, session);
 
+			return String.format("redirect:/boardInfoPage/%d.do", board.getIdx());
+			
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 
